@@ -31,30 +31,154 @@ const diceArray = [
   {
     name: '6',
     img: 'img/6.png'
-  }
+  },  {
+    name: '1',
+    img: 'img/1.png'
+  },
+  {
+    name: '2',
+    img: 'img/2.png'
+  },
+  {
+    name: '3',
+    img: 'img/3.png'
+  },
+  {
+    name: '4',
+    img: 'img/4.png'
+  },
+  {
+    name: '5',
+    img: 'img/5.png'
+  },
+  {
+    name: '6',
+    img: 'img/6.png'
+  },  {
+    name: '1',
+    img: 'img/1.png'
+  },
+  {
+    name: '2',
+    img: 'img/2.png'
+  },
+  {
+    name: '3',
+    img: 'img/3.png'
+  },
+  {
+    name: '4',
+    img: 'img/4.png'
+  },
+  {
+    name: '5',
+    img: 'img/5.png'
+  },
+  {
+    name: '6',
+    img: 'img/6.png'
+  },  {
+    name: '1',
+    img: 'img/1.png'
+  },
+  {
+    name: '2',
+    img: 'img/2.png'
+  },
+  {
+    name: '3',
+    img: 'img/3.png'
+  },
+  {
+    name: '4',
+    img: 'img/4.png'
+  },
+  {
+    name: '5',
+    img: 'img/5.png'
+  },
+  {
+    name: '6',
+    img: 'img/6.png'
+  },  {
+    name: '1',
+    img: 'img/1.png'
+  },
+  {
+    name: '2',
+    img: 'img/2.png'
+  },
+  {
+    name: '3',
+    img: 'img/3.png'
+  },
+  {
+    name: '4',
+    img: 'img/4.png'
+  },
+  {
+    name: '5',
+    img: 'img/5.png'
+  },
+  {
+    name: '6',
+    img: 'img/6.png'
+  },  {
+    name: '1',
+    img: 'img/1.png'
+  },
+  {
+    name: '2',
+    img: 'img/2.png'
+  },
+  {
+    name: '3',
+    img: 'img/3.png'
+  },
+  {
+    name: '4',
+    img: 'img/4.png'
+  },
+  {
+    name: '5',
+    img: 'img/5.png'
+  },
+  {
+    name: '6',
+    img: 'img/6.png'
+  },
 ]
-diceArray.sort(() => 0.5 - Math.random())
+
 let diceChosen = []
 let diceChosenID = []
 // functions 
 
+function randomDiceNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 function rollAll() {
-  for (let i = 0; i < diceArray.length; i++) {
+  for (let i = 0; i < 6; i++) {
+    diceArray.sort(() => 0.5 - Math.random())
     const dice = document.createElement('img')
     const diceName = diceArray[i].name
     dice.setAttribute('src', `img/${diceName}.png`)
-    dice.setAttribute('data-id', `${diceName}`)
+    dice.setAttribute('id', `${diceName}`)
     diceGrid.appendChild(dice)
-    console.log(dice)
+    console.log(diceGrid)
+    dice.style.marginRight = '4px'
+    dice.style.borderRadius = '10px'
+    diceGrid.style.height = '120px'
+    diceGrid.style.display = 'block'
  }
+
 }
   diceGrid.addEventListener('click', () => {
-    
+    console.log(diceGrid[2])
   })
 
 
-btnRollAll.addEventListener('click', () => {
+const diceButtonRollAll = btnRollAll.addEventListener('click', () => {
   diceShowcase.classList.add('dice-gone')
   rollAll()
 })
-
