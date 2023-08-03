@@ -43,8 +43,11 @@ function randomDiceNumber(min, max) {
 }
 
 function rollAll() {
+  diceArray.sort(() => 0.5 - Math.random())
+  while (diceGrid.firstChild) {
+    diceGrid.removeChild(diceGrid.lastChild);
+  }
   for (let i = 0; i < 5; i++) {
-    diceArray.sort(() => 0.5 - Math.random())
     const dice = document.createElement('img')
     const diceName = diceArray[i].name
     dice.setAttribute('src', `img/${diceName}.png`)
@@ -64,6 +67,5 @@ function rollAll() {
 
 
 const diceButtonRollAll = btnRollAll.addEventListener('click', () => {
-  diceShowcase.classList.add('dice-gone')
   rollAll()
 })
