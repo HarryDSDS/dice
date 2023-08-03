@@ -36,30 +36,23 @@ const diceArray = [
 diceArray.sort(() => 0.5 - Math.random())
 let diceChosen = []
 let diceChosenID = []
-
 // functions 
 
 function rollAll() {
   for (let i = 0; i < diceArray.length; i++) {
     const dice = document.createElement('img')
     const diceName = diceArray[i].name
-    console.log(diceName)
     dice.setAttribute('src', `img/${diceName}.png`)
-    dice.setAttribute('data-id', i)
-    console.log(diceArray)
-    console.log(dice)
-    // dice.addEventListener('click', throwDice())
+    dice.setAttribute('data-id', `${diceName}`)
     diceGrid.appendChild(dice)
+    console.log(dice)
  }
+}
+  diceGrid.addEventListener('click', () => {
+    
+  })
 
 
-}
-function throwDice() {
-  let diceID = this.getAttribute('data-id')
-  diceChosen.push(diceArray[diceID].name)
-  diceChosenID.push(diceID)
-  this.setAttribute('src', diceArray[diceID].img)
-}
 btnRollAll.addEventListener('click', () => {
   diceShowcase.classList.add('dice-gone')
   rollAll()
