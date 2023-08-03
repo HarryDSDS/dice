@@ -43,17 +43,32 @@ function randomDiceNumber(min, max) {
 }
 
 function rollAll() {
+  // sortowanie, za kazdym odpaleniem rollAll shufflujemy tablicę
   diceArray.sort(() => 0.5 - Math.random());
+
+  // oramy w pizdu tego diceGrida, czyli wszystkie kości, przez ułamek sekundy jest pusto na ekranie
   while (diceGrid.firstChild) {
     diceGrid.removeChild(diceGrid.lastChild);
   }
-  for (let i = 0; i < 5; i++) {
+
+  // zamiast 6 na sztywno, pętla idzie do diceArray.length. Raz, ze wiadomo po czym iterujemy, dwa, jak zmieni się (akurat nie w tym przypadku)
+  // ilość elementów w tablicy, to pętla to będzie respektować
+  for (let i = 0; i < diceArray.length; i++) {
+    // tworzymy nowy element HTML img, jeszcze go nie rysujemy, on jest tylko w pamięci
     const dice = document.createElement("img");
+
+    // z posortowanej listy bierzemy sobie name czyli 1,2,3 whatever
     const diceName = diceArray[i].name;
+
+    // uzywamy tego name, zeby dokleic do .png (to w pizdu mozna uprościć, next time)
     dice.setAttribute("src", `img/${diceName}.png`);
     dice.setAttribute("id", `${diceName}`);
+
+    // doklejamy, dzieki temu jest widoczne w UI, a jako, ze pętla idzie po kadej kości, to będzie 6 kości
     diceGrid.appendChild(dice);
     console.log(diceGrid);
+
+    // stylujemy to gówno
     dice.style.marginRight = "4px";
     dice.style.borderRadius = "10px";
     diceGrid.style.height = "120px";
