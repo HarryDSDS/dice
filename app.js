@@ -43,7 +43,7 @@ function randomDiceNumber(min, max) {
 }
 
 function rollAll() {
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     diceArray.sort(() => 0.5 - Math.random())
     const dice = document.createElement('img')
     const diceName = diceArray[i].name
