@@ -1,7 +1,7 @@
 // selectors czy chuj
 const diceShowcase = document.querySelector(".dice-showcase");
 const diceGrid = document.querySelector(".dice-grid");
-const diceGridSelected = document.querySelector('.dice-grid-selected')
+const diceGridSelected = document.querySelector(".dice-grid-selected");
 
 // buttons
 const btnRollAll = document.querySelector(".btn-roll-all");
@@ -136,11 +136,8 @@ let diceChosenID = [];
 
 // functions
 
-function randomDiceNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
 function rollAll() {
+  diceGridSelected.innerHTML = ""; // do zrobienia
   diceArray.sort(() => 0.5 - Math.random());
   while (diceGrid.firstChild) {
     diceGrid.removeChild(diceGrid.lastChild);
@@ -150,9 +147,10 @@ function rollAll() {
     const dice = document.createElement("img");
     const diceName = diceArray[i].name;
     dice.setAttribute("src", `img/${diceName}.png`);
-    dice.setAttribute("id", i);
+    dice.setAttribute("name", `${diceName}`);
+    dice.setAttribute("class", `${diceName}`);
+    dice.setAttribute("id", `${i}`);
     diceGrid.appendChild(dice);
-    console.log(diceGrid);
     dice.style.marginRight = "4px";
     dice.style.borderRadius = "10px";
     diceGrid.style.height = "120px";
@@ -160,21 +158,43 @@ function rollAll() {
   }
 }
 
-function diceSelect(){
-diceGrid.addEventListener("click", (e) => {
-  const clickedDice = e.target
-  diceChosen.push(clickedDice)
-  console.log(diceChosen)
-  // console.log(diceChosen)
-//   for (i = 0; i < diceChosen.length; i++){
+function diceSelect() {
+  diceGrid.addEventListener("click", (e) => {
+    const clickedDice = e.target;
+    btnRollSelected.addEventListener("click", () => {
+      diceGrid.removeChild(clickedDice);
+    });
+    const nameDice = clickedDice.name;
 
-// }
+    diceChosen.push(clickedDice);
+    for (i = 0; i < 5; i++) {
+      clickedDice.setAttribute("src", `img/${nameDice}rev.png`);
+    }
+  });
 }
-)}
 
+function rollSelected() {
+  btnRollSelected.addEventListener("click", () => {
+    while (diceGridSelected.firstChild) {
+      diceGridSelected.removeChild(diceGridSelected.lastChild);
+    }
+    for (let i = 0; i < diceChosen.length; i++) {
+      diceArray.sort(() => 0.5 - Math.random());
+      const dice = document.createElement("img");
+      const diceName = diceArray[i].name;
+      dice.setAttribute("src", `img/${diceName}.png`);
+      dice.setAttribute("name", `${diceName}`);
+      diceGridSelected.appendChild(dice);
+      dice.style.marginRight = "4px";
+      dice.style.borderRadius = "10px";
+    }
+    diceGridSelected.style.height = "120px";
+    diceGridSelected.style.display = "block";
+  });
+}
 
 const diceButtonRollAll = btnRollAll.addEventListener("click", () => {
-  console.log(diceGrid.innerHTML)
   rollAll();
-  diceSelect()
+  diceSelect();
+  rollSelected();
 });
