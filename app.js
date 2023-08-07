@@ -133,10 +133,12 @@ const diceArray = [
 
 let diceChosen = [];
 let diceChosenID = [];
+let rollCount = 0;
 
 // functions
 
 function rollAll() {
+  rollCount++;
   diceGridSelected.innerHTML = ""; // do zrobienia
   diceArray.sort(() => 0.5 - Math.random());
   while (diceGrid.firstChild) {
@@ -156,18 +158,19 @@ function rollAll() {
     diceGrid.style.height = "120px";
     diceGrid.style.display = "block";
   }
+  console.log(diceGrid);
 }
 
 function diceSelect() {
   diceGrid.addEventListener("click", (e) => {
     const clickedDice = e.target;
+    console.log(clickedDice.name);
     btnRollSelected.addEventListener("click", () => {
       diceGrid.removeChild(clickedDice);
     });
     const nameDice = clickedDice.name;
-
     diceChosen.push(clickedDice);
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < diceChosen.length; i++) {
       clickedDice.setAttribute("src", `img/${nameDice}rev.png`);
     }
   });
@@ -190,10 +193,18 @@ function rollSelected() {
     }
     diceGridSelected.style.height = "120px";
     diceGridSelected.style.display = "block";
+    btnRollAll.addEventListener("click", () => {
+      console.log(diceChosen);
+      console.log(diceChosen.length);
+    });
+    btnRollSelected.addEventListener("click", () => {
+      console.log(diceChosen);
+      console.log(diceChosen.length);
+    });
   });
 }
 
-const diceButtonRollAll = btnRollAll.addEventListener("click", () => {
+btnRollAll.addEventListener("click", () => {
   rollAll();
   diceSelect();
   rollSelected();

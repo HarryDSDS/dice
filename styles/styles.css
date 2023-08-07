@@ -1,13 +1,9 @@
-.dice-showcase {
-  display: block;
-  height: 120px;
-}
-
 .dice-gone {
   height: 0;
   visibility: hidden;
 }
 
 .dice-grid {
-  display: block;
+  display: inline-block;
+  width: auto;
 }
