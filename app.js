@@ -144,7 +144,6 @@ function rollAll() {
   while (diceGrid.firstChild) {
     diceGrid.removeChild(diceGrid.lastChild);
   }
-
   for (let i = 0; i < 5; i++) {
     const dice = document.createElement("img");
     const diceName = diceArray[i].name;
@@ -161,7 +160,9 @@ function rollAll() {
 }
 
 function rollSelected() {
+  diceGridSelected.innerHTML = "";
   btnRollSelected.addEventListener("click", () => {
+    // debugger;
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
@@ -194,19 +195,28 @@ function diceSelect() {
   });
 }
 
+function diceDeselect() {
+  diceGridSelected.addEventListener("click", (e) => {
+    const clickedDice = e.target;
+    for (let i = 0; i < diceChosen.length; i++) {
+      const dice = document.createElement("img");
+      const diceName = diceChosen[i].name;
+      console.log(diceName);
+      dice.setAttribute("src", `img/${diceName}.png`);
+      dice.setAttribute("name", `${diceName}`);
+      dice.style.marginRight = "4px";
+      dice.style.borderRadius = "10px";
+      diceGrid.appendChild(dice);
+      diceGridSelected.removeChild(clickedDice);
+    }
+  });
+}
+
+rollSelected();
+diceSelect();
+
 btnRollAll.addEventListener("click", () => {
   diceChosen = [];
-  console.log(diceChosen);
-  console.log(diceChosen.length);
-  console.log(diceGrid);
-  console.log(diceGridSelected);
   rollAll();
-  diceSelect();
-  rollSelected();
-});
-btnRollSelected.addEventListener("click", () => {
-  console.log(diceChosen);
-  console.log(diceChosen.length);
-  console.log(diceGrid);
-  console.log(diceGridSelected);
+  diceDeselect();
 });
