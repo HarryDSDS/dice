@@ -135,6 +135,8 @@ let diceChosenID = [];
 let rollCount = 0;
 
 // functions
+// do zrobienia:
+// - deselekcja w diceGrid i jednoczesne usunięcie z diceChosen
 
 function rollAll() {
   rollCount++;
@@ -159,10 +161,32 @@ function rollAll() {
   }
 }
 
+// function diceGridDeselect() {
+//   diceGrid.addEventListener("click", (e) => {
+//     const clickedDice = e.target;
+//     for (let i = 0; i < diceChosen.length; i++) {
+//       const dice = document.createElement("img");
+//       const diceName = clickedDice.name;
+//       console.log(diceName);
+
+//       dice.setAttribute("src", `img/${diceName}.png`);
+//       dice.setAttribute("name", `${diceName}`);
+//       dice.setAttribute("class", `${diceName}`);
+//       dice.setAttribute("id", `${i}`);
+//       diceChosen.pull(clickedDice);
+//       dice.style.marginRight = "4px";
+//       dice.style.borderRadius = "10px";
+//       diceGrid.style.height = "120px";
+//       diceGrid.style.display = "block";
+//     }
+//   });
+// }
+// diceGridDeselect();
+
 function rollSelected() {
   diceGridSelected.innerHTML = "";
   btnRollSelected.addEventListener("click", () => {
-    // debugger;
+    //
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
@@ -191,7 +215,9 @@ function diceSelect() {
     diceChosen.push(clickedDice);
     for (i = 0; i < diceChosen.length; i++) {
       clickedDice.setAttribute("src", `img/${nameDice}rev.png`);
+      clickedDice.setAttribute("id", `${i}`);
     }
+    console.log(diceChosen);
   });
 }
 
@@ -200,21 +226,21 @@ function diceDeselect() {
     const clickedDice = e.target;
     for (let i = 0; i < diceChosen.length; i++) {
       const dice = document.createElement("img");
-      const diceName = diceChosen[i].name;
-      console.log(diceName);
+      const diceName = clickedDice.name;
       dice.setAttribute("src", `img/${diceName}.png`);
       dice.setAttribute("name", `${diceName}`);
       dice.style.marginRight = "4px";
       dice.style.borderRadius = "10px";
-      diceGrid.appendChild(dice);
       diceGridSelected.removeChild(clickedDice);
+      diceGrid.appendChild(dice);
+      diceChosen.pop();
+      // debugger;
     }
   });
 }
 
 rollSelected();
 diceSelect();
-
 btnRollAll.addEventListener("click", () => {
   diceChosen = [];
   rollAll();
