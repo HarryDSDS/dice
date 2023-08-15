@@ -1,6 +1,7 @@
 // selectors czy chuj
 const diceGrid = document.querySelector(".dice-grid");
 const diceGridSelected = document.querySelector(".dice-grid-selected");
+const oneDiceDiv = document.querySelector(".one-dice");
 
 // buttons
 const btnRollAll = document.querySelector(".btn-roll-all");
@@ -130,10 +131,15 @@ const diceArray = [
   },
 ];
 
-let diceRolledGrid = [];
 let diceChosen = [];
 let diceChosenID = [];
 let rollCount = 0;
+let oneDice = 0;
+let twoDice = 0;
+let threeDice = 0;
+let fourDice = 0;
+let fiveDice = 0;
+let sixDice = 0;
 
 // functions
 
@@ -152,11 +158,28 @@ function rollAll() {
     dice.setAttribute("class", `${diceName}`);
     dice.setAttribute("id", `${i}`);
     diceGrid.appendChild(dice);
-    diceRolledGrid.push(dice.name);
     dice.style.marginRight = "4px";
     dice.style.borderRadius = "10px";
     diceGrid.style.height = "120px";
     diceGrid.style.display = "block";
+    if (dice.name === "1") {
+      oneDice++;
+    }
+    if (dice.name === "2") {
+      twoDice++;
+    }
+    if (dice.name === "3") {
+      threeDice++;
+    }
+    if (dice.name === "4") {
+      fourDice++;
+    }
+    if (dice.name === "5") {
+      fiveDice++;
+    }
+    if (dice.name === "6") {
+      sixDice++;
+    }
   }
 }
 
@@ -164,6 +187,8 @@ function rollSelected() {
   diceGridSelected.innerHTML = "";
   btnRollSelected.addEventListener("click", () => {
     rollCount++;
+    rollCountCount();
+    oneDiceLogic();
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
@@ -179,22 +204,36 @@ function rollSelected() {
       dice.style.borderRadius = "10px";
       diceGridSelected.style.height = "120px";
       diceGridSelected.style.display = "block";
+      console.log(dice);
+      if (dice.name === "1") {
+        oneDice++;
+      }
+      if (dice.name === "2") {
+        twoDice++;
+      }
+      if (dice.name === "3") {
+        threeDice++;
+      }
+      if (dice.name === "4") {
+        fourDice++;
+      }
+      if (dice.name === "5") {
+        fiveDice++;
+      }
+      if (dice.name === "6") {
+        sixDice++;
+      }
+      console.log(oneDice);
     }
   });
 }
 
 function diceSelect() {
-  const rollValue = diceRolledGrid.values();
   diceGrid.addEventListener("click", (e) => {
     const clickedDice = e.target;
 
     btnRollSelected.addEventListener("click", () => {
       diceGrid.removeChild(clickedDice);
-      for (const value of rollValue) {
-        if (clickedDice.id == value) {
-        }
-      }
-      //
     });
     const nameDice = clickedDice.name;
     diceChosen.push(clickedDice);
@@ -216,44 +255,44 @@ function diceDeselect() {
       dice.style.borderRadius = "10px";
       diceGridSelected.removeChild(clickedDice);
       diceGrid.appendChild(dice);
-      diceRolledGrid.push(dice.name);
       diceChosen.pop();
     }
   });
-}
-// sprawdza czy dana kość została wyrzucona
-function diceCheck() {
-  const count = {};
-  const rollValue = diceRolledGrid.values();
-  for (let ele of rollValue) {
-    if (count[ele]) {
-      count[ele] += 1;
-    } else {
-      count[ele] = 1;
-    }
-  }
-}
-
-function getOccurrence(array, value) {
-  let count = 0;
-  array.forEach((v) => v === value && count++);
 }
 
 function rollCountCount() {
   if (rollCount === 4) {
     alert("next round");
-    rollCount = 1;
+    rollCount = 0;
   }
 }
 
 rollSelected();
 diceSelect();
 btnRollAll.addEventListener("click", () => {
+  oneDice = 0;
   rollCount++;
-  diceRolledGrid.splice(0, 5);
   diceChosen = [];
   rollAll();
   diceDeselect();
   rollCountCount();
-  diceCheck();
+  oneDiceLogic();
 });
+
+//logika
+
+// 1
+
+function oneDiceLogic() {
+  if (oneDice == 1) {
+    oneDiceDiv.innerHTML = "-2";
+  } else if (oneDice == 2) {
+    oneDiceDiv.innerHTML = "-1";
+  } else if (oneDice == 3) {
+    oneDiceDiv.innerHTML = "0";
+  } else if (oneDice == 4) {
+    oneDiceDiv.innerHTML = "1";
+  } else if (oneDice == 5) {
+    oneDiceDiv.innerHTML = "2";
+  }
+}
