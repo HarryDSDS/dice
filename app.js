@@ -188,7 +188,6 @@ function rollSelected() {
   btnRollSelected.addEventListener("click", () => {
     rollCount++;
     rollCountCount();
-    oneDiceLogic();
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
@@ -255,6 +254,7 @@ function diceDeselect() {
       dice.style.borderRadius = "10px";
       diceGridSelected.removeChild(clickedDice);
       diceGrid.appendChild(dice);
+      oneDiceLogic();
       diceChosen.pop();
     }
   });
@@ -285,14 +285,14 @@ btnRollAll.addEventListener("click", () => {
 
 function oneDiceLogic() {
   if (oneDice == 1) {
-    oneDiceDiv.innerHTML = "-2";
+    oneDiceDiv.innerHTML = -2;
   } else if (oneDice == 2) {
-    oneDiceDiv.innerHTML = "-1";
+    oneDiceDiv.innerHTML = -1;
   } else if (oneDice == 3) {
-    oneDiceDiv.innerHTML = "0";
+    oneDiceDiv.innerHTML = 0;
   } else if (oneDice == 4) {
-    oneDiceDiv.innerHTML = "1";
+    oneDiceDiv.innerHTML = 1;
   } else if (oneDice == 5) {
-    oneDiceDiv.innerHTML = "2";
+    oneDiceDiv.innerHTML = 2;
   }
 }
