@@ -142,10 +142,9 @@ const diceArray = [
     img: "img/6.png",
   },
 ];
-
 let diceChosen = [];
-let diceChosenID = [];
 let rollCount = 0;
+let rollSelectedCount = 0;
 let oneDie = 0;
 let twoDice = 0;
 let threeDice = 0;
@@ -158,7 +157,6 @@ let threeLogicEnable = true;
 let fourLogicEnable = true;
 let fiveLogicEnable = true;
 let sixLogicEnable = true;
-let rollSelectedEnable = true; // wyłacza zerowanie wartości kości
 
 // functions
 
@@ -207,9 +205,35 @@ function rollSelected() {
   btnRollSelected.addEventListener("click", () => {
     rollCount++;
     rollCountCount();
+    let gridChildren = diceGrid.children;
+    console.log(typeof gridChildren);
+    for (i = 0; i < gridChildren.length; i++) {
+      let tableChild = gridChildren[i];
+      // if (tableChild.name !== "1") {
+      //   oneDie = 0;
+      // }
+      // if (tableChild.name !== "2") {
+      //   twoDice = 0;
+      // }
+      // if (tableChild.name !== "3") {
+      //   threeDice = 0;
+      // }
+      // if (tableChild.name !== "4") {
+      //   fourDice = 0;
+      // }
+      // if (tableChild.name !== "5") {
+      //   fiveDice = 0;
+      // }
+      // if (tableChild.name !== "6") {
+      //   sixDice = 0;
+      // }
+      console.log(diceGridSelected);
+      console.log(tableChild);
+    }
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
+
     for (let i = 0; i < diceChosen.length; i++) {
       diceArray.sort(() => 0.5 - Math.random());
       const dice = document.createElement("img");
@@ -272,6 +296,24 @@ function diceSelect() {
     diceChosen.push(clickedDice);
     for (i = 0; i < diceChosen.length; i++) {
       clickedDice.setAttribute("src", `img/${nameDice}rev.png`);
+      if (nameDice === "1") {
+        oneDie = 0;
+      }
+      if (nameDice === "2") {
+        twoDice = 0;
+      }
+      if (nameDice === "3") {
+        threeDice = 0;
+      }
+      if (nameDice === "4") {
+        fourDice = 0;
+      }
+      if (nameDice === "5") {
+        fiveDice = 0;
+      }
+      if (nameDice === "6") {
+        sixDice = 0;
+      }
     }
   });
 }
@@ -285,6 +327,8 @@ function diceDeselect() {
       const diceName = clickedDice.name;
       dice.setAttribute("src", `img/${diceName}.png`);
       dice.setAttribute("name", `${diceName}`);
+      dice.setAttribute("class", `${diceName}`);
+      dice.setAttribute("id", `${i}`);
       dice.style.marginRight = "4px";
       dice.style.borderRadius = "10px";
       diceGridSelected.removeChild(clickedDice);
@@ -353,23 +397,6 @@ btnRollAll.addEventListener("click", () => {
   }
 });
 
-// function rollSelectedRun() {
-//   btnRollSelected.addEventListener("click", () => {
-//     console.log(rollSelectedEnable);
-
-//     if (rollSelectedEnable) {
-//       rollSelectedEnable = false;
-//       oneDie = 0;
-//       twoDice = 0;
-//       threeDice = 0;
-//       fourDice = 0;
-//       fiveDice = 0;
-//       sixDice = 0;
-//       console.log(rollSelectedEnable);
-//     }
-//   });
-// }
-rollSelectedRun();
 btnSchoolConfirmOne.addEventListener("click", () => {
   oneLogicEnable = false;
   btnSchoolConfirmOne.disabled = true;
