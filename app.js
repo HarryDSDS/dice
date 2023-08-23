@@ -205,8 +205,9 @@ function rollSelected() {
   btnRollSelected.addEventListener("click", () => {
     rollCount++;
     rollCountCount();
-    let gridChildren = diceGrid.children;
-    console.log(typeof gridChildren);
+    let gridChildren = diceGridSelected.children;
+    // console.log(diceGridSelected.classList);
+    // console.log(diceGridSelected);
     for (i = 0; i < gridChildren.length; i++) {
       let tableChild = gridChildren[i];
       // if (tableChild.name !== "1") {
@@ -227,8 +228,8 @@ function rollSelected() {
       // if (tableChild.name !== "6") {
       //   sixDice = 0;
       // }
-      console.log(diceGridSelected);
-      console.log(tableChild);
+
+      console.log(tableChild.parentElement);
     }
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
