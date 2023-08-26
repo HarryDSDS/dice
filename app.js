@@ -146,6 +146,7 @@ let diceChosen = [];
 let rollCount = 0;
 let rollSelectedCount = 0;
 let oneDie = 0;
+let oneDieRoll = 0
 let twoDice = 0;
 let threeDice = 0;
 let fourDice = 0;
@@ -205,32 +206,29 @@ function rollSelected() {
   btnRollSelected.addEventListener("click", () => {
     rollCount++;
     rollCountCount();
+    rollSelectedCount++
+                console.log(oneDie + "s")
+            console.log(oneDieRoll + "S")
+    let gridAll = diceGrid.children
+    for (i = 0; i < gridAll.length; i++){
+      let tableChild = gridAll[i]
+    }
     let gridChildren = diceGridSelected.children;
-    // console.log(diceGridSelected.classList);
-    // console.log(diceGridSelected);
     for (i = 0; i < gridChildren.length; i++) {
       let tableChild = gridChildren[i];
-      // if (tableChild.name !== "1") {
-      //   oneDie = 0;
-      // }
-      // if (tableChild.name !== "2") {
-      //   twoDice = 0;
-      // }
-      // if (tableChild.name !== "3") {
-      //   threeDice = 0;
-      // }
-      // if (tableChild.name !== "4") {
-      //   fourDice = 0;
-      // }
-      // if (tableChild.name !== "5") {
-      //   fiveDice = 0;
-      // }
-      // if (tableChild.name !== "6") {
-      //   sixDice = 0;
-      // }
-
-      console.log(tableChild.parentElement);
+          if (tableChild.name == "1") {
+            oneDieRoll++
+            console.log(oneDie + "ss")
+            console.log(oneDieRoll + "Ss")
+            if(oneDie == 0){
+              oneDie = oneDieRoll - oneDie
+            } else {
+              oneDie = oneDie - oneDieRoll
+            }
+            oneDieLogic()
+          }
     }
+    
     while (diceGridSelected.firstChild) {
       diceGridSelected.removeChild(diceGridSelected.lastChild);
     }
@@ -283,7 +281,12 @@ function rollSelected() {
       if (sixLogicEnable) {
         sixDiceLogic();
       }
+
     }
+
+
+    // console.log(oneDieRoll)
+    // console.log(oneDie)
   });
 }
 
@@ -297,24 +300,27 @@ function diceSelect() {
     diceChosen.push(clickedDice);
     for (i = 0; i < diceChosen.length; i++) {
       clickedDice.setAttribute("src", `img/${nameDice}rev.png`);
-      if (nameDice === "1") {
-        oneDie = 0;
+      if (rollSelectedCount == 1){
+        if (nameDice === "1") {
+          oneDie = 0;
+        }
+        if (nameDice === "2") {
+          twoDice = 0;
+        }
+        if (nameDice === "3") {
+          threeDice = 0;
+        }
+        if (nameDice === "4") {
+          fourDice = 0;
+        }
+        if (nameDice === "5") {
+          fiveDice = 0;
+        }
+        if (nameDice === "6") {
+          sixDice = 0;
+        } 
       }
-      if (nameDice === "2") {
-        twoDice = 0;
-      }
-      if (nameDice === "3") {
-        threeDice = 0;
-      }
-      if (nameDice === "4") {
-        fourDice = 0;
-      }
-      if (nameDice === "5") {
-        fiveDice = 0;
-      }
-      if (nameDice === "6") {
-        sixDice = 0;
-      }
+      
     }
   });
 }
@@ -322,7 +328,6 @@ function diceSelect() {
 function diceDeselect() {
   diceGridSelected.addEventListener("click", (e) => {
     const clickedDice = e.target;
-    console.log(clickedDice.name);
     for (let i = 0; i < diceChosen.length; i++) {
       const dice = document.createElement("img");
       const diceName = clickedDice.name;
