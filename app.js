@@ -147,22 +147,16 @@ let diceChosen = [];
 let rollCount = 0;
 let rollSelectedCount = 0;
 let oneDie = 0;
-// const oneDieFinalSchool = 0;
 let oneDieRoll = 0;
 let twoDice = 0;
-const twoDiceFinalSchool = 0;
 let twoDiceRoll = 0;
 let threeDice = 0;
-const threeDiceFinalSchool = 0;
 let threeDiceRoll = 0;
 let fourDice = 0;
-const fourDiceFinalSchool = 0;
 let fourDiceRoll = 0;
 let fiveDice = 0;
-const fiveDiceFinalSchool = 0;
 let fiveDiceRoll = 0;
 let sixDice = 0;
-const sixDiceFinalSchool = 0;
 let sixDiceRoll = 0;
 let schoolSum = 0;
 let oneLogicEnable = true;
@@ -171,6 +165,8 @@ let threeLogicEnable = true;
 let fourLogicEnable = true;
 let fiveLogicEnable = true;
 let sixLogicEnable = true;
+
+const schoolResults = {};
 
 // functions
 function diceCheck() {
@@ -182,7 +178,7 @@ function diceCheck() {
       if (rollSelectedCount == 0) {
         if (diceGridChildren[i].name == "1") {
           oneDie++;
-          // oneDieFinalSchool++
+          console.log(oneDie);
         }
       }
     }
@@ -411,89 +407,104 @@ function diceSelect() {
     });
     const nameDice = clickedDice.name;
     // for oneDie
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "1") {
-        oneDie--;
-        oneDieLogic();
+    if (oneLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "1") {
+          oneDie--;
+          oneDieLogic();
+        }
+      }
+      if (rollSelectedCount == 2) {
+        if (nameDice == "1") {
+          oneDieRoll--;
+          oneDieLogic();
+        }
       }
     }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "1") {
-        oneDieRoll--;
-        oneDieLogic();
-      }
-    }
-
     // end for oneDie
     // for twoDice
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "2") {
-        twoDice--;
-        twoDiceLogic();
+    if (twoLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "2") {
+          twoDice--;
+          twoDiceLogic();
+        }
       }
-    }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "2") {
-        twoDiceRoll--;
-        twoDiceLogic();
+      if (rollSelectedCount == 2) {
+        if (nameDice == "2") {
+          twoDiceRoll--;
+          twoDiceLogic();
+        }
       }
     }
     // end for twoDice
     // for threeDice
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "3") {
-        threeDice--;
-        threeDiceLogic();
+    if (threeLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "3") {
+          threeDice--;
+          threeDiceLogic();
+        }
+      }
+      if (rollSelectedCount == 2) {
+        if (nameDice == "3") {
+          threeDiceRoll--;
+          threeDiceLogic();
+        }
       }
     }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "3") {
-        threeDiceRoll--;
-        threeDiceLogic();
-      }
-    }
+
     // end for threeDice
     // for fourDIce
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "4") {
-        fourDice--;
-        fourDiceLogic();
+    if (fourLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "4") {
+          fourDice--;
+          fourDiceLogic();
+        }
+      }
+      if (rollSelectedCount == 2) {
+        if (nameDice == "4") {
+          fourDiceRoll--;
+          fourDiceLogic();
+        }
       }
     }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "4") {
-        fourDiceRoll--;
-        fourDiceLogic();
-      }
-    }
+
     // end for fourDice
     // for fiveDice
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "5") {
-        fiveDice--;
-        fiveDiceLogic();
+    if (fiveLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "5") {
+          fiveDice--;
+          fiveDiceLogic();
+        }
+      }
+      if (rollSelectedCount == 2) {
+        if (nameDice == "5") {
+          fiveDiceRoll--;
+          fiveDiceLogic();
+        }
       }
     }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "5") {
-        fiveDiceRoll--;
-        fiveDiceLogic();
-      }
-    }
+
     // end for fiveDice
     // for sixDice
-    if (rollSelectedCount == 0 || rollSelectedCount == 1) {
-      if (nameDice == "6") {
-        sixDice--;
-        sixDiceLogic();
+    if (sixLogicEnable) {
+      if (rollSelectedCount == 0 || rollSelectedCount == 1) {
+        if (nameDice == "6") {
+          sixDice--;
+          sixDiceLogic();
+        }
+      }
+      if (rollSelectedCount == 2) {
+        if (nameDice == "6") {
+          sixDiceRoll--;
+          sixDiceLogic();
+        }
       }
     }
-    if (rollSelectedCount == 2) {
-      if (nameDice == "6") {
-        sixDiceRoll--;
-        sixDiceLogic();
-      }
-    }
+
     // end for sixDice
     diceChosen.push(clickedDice);
     for (i = 0; i < diceChosen.length; i++) {
@@ -549,6 +560,12 @@ function rollCountCount() {
 function pickLock() {
   rollCount = 0;
   rollSelectedCount = 0;
+  oneDieRoll = 0;
+  twoDiceRoll = 0;
+  threeDiceRoll = 0;
+  fourDiceRoll = 0;
+  fiveDiceRoll = 0;
+  sixDiceRoll = 0;
   btnRollAll.disabled = false;
   btnRollSelected.disabled = true;
 }
@@ -594,19 +611,39 @@ function callDiceLogic() {
     sixDiceLogic();
   }
 }
+
+function schoolScoreFinal(object) {
+  return Object.values(object).reduce((accumulator, value) => {
+    return accumulator + value;
+  }, 0);
+} // sum of score for each die in school
+
 rollSelected();
 diceSelect();
+schoolScoreFinal(schoolResults);
 btnRollSelected.addEventListener("click", () => {
   rollCount++;
-  console.log(rollCount);
   rollCountCount();
   rollSelectedCount++;
   diceCheck();
   callDiceLogic();
+  console.log(oneDie + "onedie");
+  console.log(twoDice + "twoDice");
+  console.log(threeDice + "threeDie");
+  console.log(fourDice + "fourDie");
+  console.log(fiveDice + "fiveDie");
+  console.log(sixDice + "sixDie");
+  console.log("        ");
+  console.log(oneDieRoll + "onedieR");
+  console.log(twoDiceRoll + "twoDiceR");
+  console.log(threeDiceRoll + "threeDieR");
+  console.log(fourDiceRoll + "fourDieR");
+  console.log(fiveDiceRoll + "fiveDieR");
+  console.log(sixDiceRoll + "sixDieR");
+  console.log("        ");
 });
 btnRollAll.addEventListener("click", () => {
   rollCount++;
-  console.log(rollCount);
   diceChosen = [];
   btnRollSelected.disabled = false;
   zeroDice();
@@ -616,64 +653,70 @@ btnRollAll.addEventListener("click", () => {
   callDiceLogic();
 });
 
+schoolResult.innerHTML = schoolScoreFinal(schoolResults);
+
 btnSchoolConfirmOne.addEventListener("click", () => {
-  const oneDieFinalSchool = oneDie;
+  const oneDieFinalSchool = parseInt(schoolOne.innerHTML);
+  schoolResults.oneDieResult = oneDieFinalSchool;
+  schoolOne.innerHTML = oneDieFinalSchool;
   oneLogicEnable = false;
   btnSchoolConfirmOne.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-
-  schoolOne.innerHTML = oneDieFinalSchool;
-  debugger;
-  // schoolSum = schoolSum + oneDieFinalSchool;
-  // schoolResult.innerHTML = schoolSum;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 btnSchoolConfirmTwo.addEventListener("click", () => {
+  const twoDiceFinalSchool = parseInt(schoolTwo.innerHTML);
+  schoolResults.twoDieResult = twoDiceFinalSchool;
+
+  schoolSum = schoolSum + schoolResults.twoDiceResult;
   twoLogicEnable = false;
   btnSchoolConfirmTwo.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-  twoDiceFinalSchool = twoDice;
-  schoolTwo.innerHTML = twoDiceFinalSchool;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 btnSchoolConfirmThree.addEventListener("click", () => {
+  const threeDiceFinalSchool = parseInt(schoolThree.innerHTML);
+  schoolResults.threeDieResult = threeDiceFinalSchool;
   threeLogicEnable = false;
   btnSchoolConfirmThree.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-  threeDiceFinalSchool = threeDice;
-  schoolThree.innerHTML = threeDiceFinalSchool;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 btnSchoolConfirmFour.addEventListener("click", () => {
+  const fourDiceFinalSchool = parseInt(schoolFour.innerHTML);
+  schoolResults.fourDieResult = fourDiceFinalSchool;
+  schoolSum = schoolSum + schoolResults.fourDieResult;
   fourLogicEnable = false;
   btnSchoolConfirmFour.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-  fourDiceFinalSchool = fourDice;
-  schoolFour.innerHTML = fourDiceFinalSchool;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 btnSchoolConfirmFive.addEventListener("click", () => {
+  const fiveDiceFinalSchool = parseInt(schoolFive.innerHTML);
+  schoolResults.fiveDieResult = fiveDiceFinalSchool;
   fiveLogicEnable = false;
   btnSchoolConfirmFive.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-  fiveDiceFinalSchool = fiveDice;
-  schoolFive.innerHTML = fiveDiceFinalSchool;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 btnSchoolConfirmSix.addEventListener("click", () => {
+  const sixDiceFinalSchool = parseInt(schoolSix.innerHTML);
+  schoolResults.sixDieResult = sixDiceFinalSchool;
   sixLogicEnable = false;
   btnSchoolConfirmSix.disabled = true;
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
-  sixDiceFinalSchool = sixDice;
-  schoolSix.innerHTML = sixDiceFinalSchool;
+  schoolResult.innerHTML = schoolScoreFinal(schoolResults);
 });
 
 btnNextRound.addEventListener("click", () => {
   pickLock();
 });
-
-schoolResult.innerHTML = schoolSum;
 
 //logika
 
