@@ -173,6 +173,14 @@ let threeLogicEnable = true;
 let fourLogicEnable = true;
 let fiveLogicEnable = true;
 let sixLogicEnable = true;
+let onePairLogicEnable = true;
+let twoPairsLogicEnable = true;
+let tripleLogicEnable = true;
+let straightFlushLogicEnable = true;
+let royalFlushLogicEnable = true;
+let fullHouseLogicEnable = true;
+let quadsLogicEnable = true;
+let pokerLogicEnable = true;
 let idZero = true;
 let idZeroCount = 2;
 let idOne = true;
@@ -183,7 +191,7 @@ let idThree = true;
 let idThreeCount = 2;
 let idFour = true;
 let idFourCount = 2;
-let doubleWorld = 0;
+let doubleWorld = 1;
 
 const schoolResults = {};
 
@@ -1314,6 +1322,14 @@ function pickLock() {
   idThreeCount = 2;
   idFour = true;
   idFourCount = 2;
+  onePair.innerHTML = "---";
+  twoPairs.innerHTML = "---";
+  triple.innerHTML = "---";
+  straightFlush.innerHTML = "---";
+  royalFlush.innerHTML = "---";
+  fullHouse.innerHTML = "---";
+  quads.innerHTML = "---";
+  poker.innerHTML = "---";
 }
 
 function zeroDice() {
@@ -1358,6 +1374,19 @@ function callDiceLogic() {
   }
 }
 
+function callDiceLogicWorld() {
+  oneDieLogicWorld();
+  twoDiceLogicWorld();
+  threeDiceLogicWorld();
+  fourDiceLogicWorld();
+  fiveDiceLogicWorld();
+  sixDiceLogicWold();
+  twoPairsLogic();
+  straightFlushLogic();
+  royalFlushLogic();
+  fullHouseLogic();
+}
+
 function schoolScoreFinal(object) {
   return Object.values(object).reduce((accumulator, value) => {
     return accumulator + value;
@@ -1368,11 +1397,21 @@ rollSelected();
 diceSelect();
 schoolScoreFinal(schoolResults);
 btnRollSelected.addEventListener("click", () => {
+  doubleWorld++;
+  onePair.innerHTML = "---";
+  twoPairs.innerHTML = "---";
+  triple.innerHTML = "---";
+  straightFlush.innerHTML = "---";
+  royalFlush.innerHTML = "---";
+  fullHouse.innerHTML = "---";
+  quads.innerHTML = "---";
+  poker.innerHTML = "---";
   rollCount++;
   rollCountCount();
   rollSelectedCount++;
   diceCheck();
   callDiceLogic();
+  callDiceLogicWorld();
 });
 btnRollAll.addEventListener("click", () => {
   doubleWorld = 1;
@@ -1384,6 +1423,7 @@ btnRollAll.addEventListener("click", () => {
   diceDeselect();
   rollCountCount();
   callDiceLogic();
+  callDiceLogicWorld();
 });
 
 schoolResult.innerHTML = schoolScoreFinal(schoolResults);
@@ -1483,6 +1523,39 @@ btnNextRound.addEventListener("click", () => {
 
 //logika
 
+// world scores if null
+
+function nullScoresWorld() {
+  if (
+    onePair.innerHTML == "---" ||
+    twoPairs.innerHTML == "---" ||
+    triple.innerHTML == "---" ||
+    straightFlush.innerHTML == "---" ||
+    royalFlush.innerHTML == "---" ||
+    fullHouse.innerHTML == "---" ||
+    quads.innerHTML == "---" ||
+    poker.innerHTML == "---"
+  ) {
+    if (
+      oneDie == 0 ||
+      twoDice == 0 ||
+      threeDice == 0 ||
+      fourDice == 0 ||
+      fiveDice == 0 ||
+      sixDice == 0
+    ) {
+      onePair.innerHTML = "---";
+      twoPairs.innerHTML == "---";
+      triple.innerHTML == "---";
+      straightFlush.innerHTML == "---";
+      royalFlush.innerHTML == "---";
+      fullHouse.innerHTML == "---";
+      quads.innerHTML == "---";
+      poker.innerHTML == "---";
+    }
+  }
+}
+
 // 1
 
 function oneDieLogic() {
@@ -1499,20 +1572,25 @@ function oneDieLogic() {
   } else {
     schoolOne.innerHTML = "---";
   }
-  if (oneDie == 0) {
-    onePair.innerHTML = "---";
-  }
 
+  if (schoolOne.innerHTML == "---") {
+    btnSchoolConfirmOne.disabled = true;
+  } else {
+    btnSchoolConfirmOne.disabled = false;
+  }
+}
+
+function oneDieLogicWorld() {
   if (oneDie > 1) {
     onePair.innerHTML = 2;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       onePair.innerHTML = 4;
     }
   }
 
   if (oneDie > 2) {
     triple.innerHTML = 3;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       triple.innerHTML = 6;
     }
   }
@@ -1520,23 +1598,19 @@ function oneDieLogic() {
   if (oneDie > 3) {
     twoPairs.innerHTML = 4;
     quads.innerHTML = 54;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       twoPairs.innerHTML = 8;
       quads.innerHTML = 58;
     }
   }
 
   if (oneDie > 4) {
+    fullHouse.innerHTML = 5;
     poker.innerHTML = 105;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 10;
       poker.innerHTML = 110;
     }
-  }
-
-  if (schoolOne.innerHTML == "---") {
-    btnSchoolConfirmOne.disabled = true;
-  } else {
-    btnSchoolConfirmOne.disabled = false;
   }
 }
 
@@ -1557,40 +1631,6 @@ function twoDiceLogic() {
     schoolTwo.innerHTML = "---";
   }
 
-  if (twoDice == 0) {
-    onePair.innerHTML = "---";
-  }
-
-  if (twoDice > 1) {
-    onePair.innerHTML = 4;
-    if ((doubleWorld = 1)) {
-      onePair.innerHTML = 8;
-    }
-  }
-
-  if (twoDice > 2) {
-    triple.innerHTML = 6;
-    if ((doubleWorld = 1)) {
-      triple.innerHTML = 12;
-    }
-  }
-
-  if (twoDice > 3) {
-    twoPairs.innerHTML = 8;
-    quads.innerHTML = 58;
-    if ((doubleWorld = 1)) {
-      twoPairs.innerHTML = 8;
-      quads.innerHTML = 116;
-    }
-  }
-
-  if (twoDice > 4) {
-    poker.innerHTML = 110;
-    if ((doubleWorld = 1)) {
-      poker.innerHTML = 120;
-    }
-  }
-
   if (schoolTwo.innerHTML == "---") {
     btnSchoolConfirmTwo.disabled = true;
   } else {
@@ -1598,6 +1638,39 @@ function twoDiceLogic() {
   }
 }
 
+function twoDiceLogicWorld() {
+  if (twoDice > 1) {
+    onePair.innerHTML = 4;
+    if (doubleWorld == 1) {
+      onePair.innerHTML = 8;
+    }
+  }
+
+  if (twoDice > 2) {
+    triple.innerHTML = 6;
+    if (doubleWorld == 1) {
+      triple.innerHTML = 12;
+    }
+  }
+
+  if (twoDice > 3) {
+    twoPairs.innerHTML = 8;
+    quads.innerHTML = 58;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 8;
+      quads.innerHTML = 116;
+    }
+  }
+
+  if (twoDice > 4) {
+    fullHouse.innerHTML = 10;
+    poker.innerHTML = 110;
+    if (doubleWorld == 1) {
+      poker.innerHTML = 120;
+      fullHouse.innerHTML = 20;
+    }
+  }
+}
 // 3
 function threeDiceLogic() {
   if (threeDice == 1) {
@@ -1614,40 +1687,6 @@ function threeDiceLogic() {
     schoolThree.innerHTML = "---";
   }
 
-  if (threeDice == 0) {
-    onePair.innerHTML = "---";
-  }
-
-  if (threeDice > 1) {
-    onePair.innerHTML = 6;
-    if ((doubleWorld = 1)) {
-      onePair.innerHTML = 12;
-    }
-  }
-
-  if (threeDice > 2) {
-    triple.innerHTML = 9;
-    if ((doubleWorld = 1)) {
-      triple.innerHTML = 18;
-    }
-  }
-
-  if (threeDice > 3) {
-    twoPairs.innerHTML = 12;
-    quads.innerHTML = 62;
-    if ((doubleWorld = 1)) {
-      twoPairs.innerHTML = 24;
-      quads.innerHTML = 74;
-    }
-  }
-
-  if (threeDice > 4) {
-    poker.innerHTML = 115;
-    if ((doubleWorld = 1)) {
-      poker.innerHTML = 130;
-    }
-  }
-
   if (schoolThree.innerHTML == "---") {
     btnSchoolConfirmThree.disabled = true;
   } else {
@@ -1655,6 +1694,39 @@ function threeDiceLogic() {
   }
 }
 
+function threeDiceLogicWorld() {
+  if (threeDice > 1) {
+    onePair.innerHTML = 6;
+    if (doubleWorld == 1) {
+      onePair.innerHTML = 12;
+    }
+  }
+
+  if (threeDice > 2) {
+    triple.innerHTML = 9;
+    if (doubleWorld == 1) {
+      triple.innerHTML = 18;
+    }
+  }
+
+  if (threeDice > 3) {
+    twoPairs.innerHTML = 12;
+    quads.innerHTML = 62;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 24;
+      quads.innerHTML = 74;
+    }
+  }
+
+  if (threeDice > 4) {
+    fullHouse.innerHTML = 15;
+    poker.innerHTML = 115;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 30;
+      poker.innerHTML = 130;
+    }
+  }
+}
 // 4
 
 function fourDiceLogic() {
@@ -1672,33 +1744,6 @@ function fourDiceLogic() {
     schoolFour.innerHTML = "---";
   }
 
-  if (fourDice == 0) {
-    onePair.innerHTML = "---";
-  }
-
-  if (fourDice > 1) {
-    onePair.innerHTML = 8;
-    if ((doubleWorld = 1)) {
-      onePair.innerHTML = 16;
-    }
-  }
-
-  if (fourDice > 2) {
-    triple.innerHTML = 12;
-    if ((doubleWorld = 1)) {
-      triple.innerHTML = 24;
-    }
-  }
-
-  if (fourDice > 3) {
-    twoPairs.innerHTML = 16;
-    quads.innerHTML = 66;
-    if ((doubleWorld = 1)) {
-      twoPairs.innerHTML = 32;
-      quads.innerHTML = 82;
-    }
-  }
-
   if (fourDice > 4) {
     poker.innerHTML = 120;
     if ((doubleWorld = 1)) {
@@ -1713,6 +1758,38 @@ function fourDiceLogic() {
   }
 }
 
+function fourDiceLogicWorld() {
+  if (fourDice > 1) {
+    onePair.innerHTML = 8;
+    if (doubleWorld == 1) {
+      onePair.innerHTML = 16;
+    }
+  }
+
+  if (fourDice > 2) {
+    triple.innerHTML = 12;
+    if (doubleWorld == 1) {
+      triple.innerHTML = 24;
+    }
+  }
+
+  if (fourDice > 3) {
+    twoPairs.innerHTML = 16;
+    quads.innerHTML = 66;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 32;
+      quads.innerHTML = 82;
+    }
+  }
+  if (fourDice > 4) {
+    fullHouse.innerHTML = 20;
+    poker.innerHTML = 120;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 40;
+      poker.innerHTML = 140;
+    }
+  }
+}
 // 5
 
 function fiveDiceLogic() {
@@ -1730,40 +1807,6 @@ function fiveDiceLogic() {
     schoolFive.innerHTML = "---";
   }
 
-  if (fiveDice == 0) {
-    onePair.innerHTML = "---";
-  }
-
-  if (fiveDice > 1) {
-    onePair.innerHTML = 10;
-    if ((doubleWorld = 1)) {
-      onePair.innerHTML = 20;
-    }
-  }
-
-  if (fiveDice > 2) {
-    triple.innerHTML = 15;
-    if ((doubleWorld = 1)) {
-      triple.innerHTML = 30;
-    }
-  }
-
-  if (fiveDice > 3) {
-    twoPairs.innerHTML = 20;
-    quads.innerHTML = 70;
-    if ((doubleWorld = 1)) {
-      twoPairs.innerHTML = 40;
-      quads.innerHTML = 90;
-    }
-  }
-
-  if (fiveDice > 4) {
-    poker.innerHTML = 125;
-    if ((doubleWorld = 1)) {
-      poker.innerHTML = 150;
-    }
-  }
-
   if (schoolFive.innerHTML == "---") {
     btnSchoolConfirmFive.disabled = true;
   } else {
@@ -1771,6 +1814,39 @@ function fiveDiceLogic() {
   }
 }
 
+function fiveDiceLogicWorld() {
+  if (fiveDice > 1) {
+    onePair.innerHTML = 10;
+    if (doubleWorld == 1) {
+      onePair.innerHTML = 20;
+    }
+  }
+
+  if (fiveDice > 2) {
+    triple.innerHTML = 15;
+    if (doubleWorld == 1) {
+      triple.innerHTML = 30;
+    }
+  }
+
+  if (fiveDice > 3) {
+    twoPairs.innerHTML = 20;
+    quads.innerHTML = 70;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 40;
+      quads.innerHTML = 90;
+    }
+  }
+
+  if (fiveDice > 4) {
+    fullHouse.innerHTML = 25;
+    poker.innerHTML = 125;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 50;
+      poker.innerHTML = 150;
+    }
+  }
+}
 // 6
 
 function sixDiceLogic() {
@@ -1788,20 +1864,24 @@ function sixDiceLogic() {
     schoolSix.innerHTML = "---";
   }
 
-  if (sixDice == 0) {
-    onePair.innerHTML = "---";
+  if (schoolSix.innerHTML == "---") {
+    btnSchoolConfirmSix.disabled = true;
+  } else {
+    btnSchoolConfirmSix.disabled = false;
   }
+}
 
+function sixDiceLogicWold() {
   if (sixDice > 1) {
     onePair.innerHTML = 12;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       onePair.innerHTML = 24;
     }
   }
 
   if (sixDice > 2) {
     triple.innerHTML = 18;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       triple.innerHTML = 36;
     }
   }
@@ -1809,22 +1889,305 @@ function sixDiceLogic() {
   if (sixDice > 3) {
     twoPairs.innerHTML = 24;
     quads.innerHTML = 74;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
       twoPairs.innerHTML = 48;
       quads.innerHTML = 98;
     }
   }
 
   if (sixDice > 4) {
+    fullHouse.innerHTML = 30;
     poker.innerHTML = 130;
-    if ((doubleWorld = 1)) {
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 60;
       poker.innerHTML = 160;
     }
   }
+}
 
-  if (schoolSix.innerHTML == "---") {
-    btnSchoolConfirmSix.disabled = true;
-  } else {
-    btnSchoolConfirmSix.disabled = false;
+function twoPairsLogic() {
+  if (oneDie == 2 && twoDice == 2) {
+    twoPairs.innerHTML = 6;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 12;
+    }
+  }
+  if (oneDie == 2 && threeDice == 2) {
+    twoPairs.innerHTML = 8;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 16;
+    }
+  }
+  if (oneDie == 2 && fourDice == 2) {
+    twoPairs.innerHTML = 10;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 20;
+    }
+  }
+  if (oneDie == 2 && fiveDice == 2) {
+    twoPairs.innerHTML = 12;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 24;
+    }
+  }
+  if (oneDie == 2 && sixDice == 2) {
+    twoPairs.innerHTML = 14;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 28;
+    }
+  }
+
+  if (twoDice == 2 && threeDice == 2) {
+    twoPairs.innerHTML = 10;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 20;
+    }
+  }
+  if (twoDice == 2 && fourDice == 2) {
+    twoPairs.innerHTML = 12;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 24;
+    }
+  }
+  if (twoDice == 2 && fiveDice == 2) {
+    twoPairs.innerHTML = 14;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 28;
+    }
+  }
+  if (twoDice == 2 && sixDice == 2) {
+    twoPairs.innerHTML = 16;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 32;
+    }
+  }
+
+  if (threeDice == 2 && fourDice == 2) {
+    twoPairs.innerHTML = 14;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 28;
+    }
+  }
+  if (threeDice == 2 && fiveDice == 2) {
+    twoPairs.innerHTML = 16;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 32;
+    }
+  }
+  if (threeDice == 2 && sixDice == 2) {
+    twoPairs.innerHTML = 18;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 36;
+    }
+  }
+
+  if (fourDice == 2 && fiveDice == 2) {
+    twoPairs.innerHTML = 18;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 36;
+    }
+  }
+  if (fourDice == 2 && sixDice == 2) {
+    twoPairs.innerHTML = 20;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 40;
+    }
+  }
+
+  if (fiveDice == 2 && sixDice == 2) {
+    twoPairs.innerHTML = 22;
+    if (doubleWorld == 1) {
+      twoPairs.innerHTML = 44;
+    }
+  }
+}
+
+function straightFlushLogic() {
+  if (
+    oneDie == 1 &&
+    twoDice == 1 &&
+    threeDice == 1 &&
+    fourDice == 1 &&
+    fiveDice == 1
+  ) {
+    straightFlush.innerHTML = 15;
+    if (doubleWorld == 1) {
+      straightFlush.innerHTML = 30;
+    }
+  }
+}
+
+function royalFlushLogic() {
+  if (
+    twoDice == 1 &&
+    threeDice == 1 &&
+    fourDice == 1 &&
+    fiveDice == 1 &&
+    sixDice == 1
+  ) {
+    royalFlush.innerHTML = 20;
+    if (doubleWorld == 1) {
+      royalFlush.innerHTML = 40;
+    }
+  }
+}
+
+function fullHouseLogic() {
+  if (oneDie == 2 && twoDice == 3) {
+    fullHouse.innerHTML = 8;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 16;
+    }
+  }
+  if (oneDie == 2 && threeDice == 3) {
+    fullHouse.innerHTML = 11;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 22;
+    }
+  }
+  if (oneDie == 2 && fourDice == 3) {
+    fullHouse.innerHTML = 14;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 28;
+    }
+  }
+  if (oneDie == 2 && fiveDice == 3) {
+    fullHouse.innerHTML = 17;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 34;
+    }
+  }
+  if (oneDie == 2 && sixDice == 3) {
+    fullHouse.innerHTML = 20;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 40;
+    }
+  }
+
+  if (oneDie == 3 && twoDice == 2) {
+    fullHouse.innerHTML = 7;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 14;
+    }
+  }
+  if (oneDie == 3 && threeDice == 2) {
+    fullHouse.innerHTML = 9;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 18;
+    }
+  }
+  if (oneDie == 3 && fourDice == 2) {
+    fullHouse.innerHTML = 11;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 22;
+    }
+  }
+  if (oneDie == 3 && fiveDice == 2) {
+    fullHouse.innerHTML = 13;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 26;
+    }
+  }
+  if (oneDie == 3 && sixDice == 2) {
+    fullHouse.innerHTML = 15;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 30;
+    }
+  }
+
+  if (twoDice == 2 && threeDice == 3) {
+    fullHouse.innerHTML = 13;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 26;
+    }
+  }
+  if (twoDice == 2 && fourDice == 3) {
+    fullHouse.innerHTML = 16;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 32;
+    }
+  }
+  if (twoDice == 2 && fiveDice == 3) {
+    fullHouse.innerHTML = 19;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 38;
+    }
+  }
+  if (twoDice == 2 && sixDice == 3) {
+    fullHouse.innerHTML = 22;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 44;
+    }
+  }
+
+  if (twoDice == 3 && threeDice == 2) {
+    fullHouse.innerHTML = 12;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 24;
+    }
+  }
+  if (twoDice == 3 && fourDice == 2) {
+    fullHouse.innerHTML = 14;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 28;
+    }
+  }
+  if (twoDice == 3 && fiveDice == 2) {
+    fullHouse.innerHTML = 16;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 32;
+    }
+  }
+  if (twoDice == 3 && sixDice == 2) {
+    fullHouse.innerHTML = 18;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 36;
+    }
+  }
+
+  if (threeDice == 2 && fourDice == 3) {
+    fullHouse.innerHTML = 18;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 36;
+    }
+  }
+  if (threeDice == 2 && fiveDice == 3) {
+    fullHouse.innerHTML = 21;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 42;
+    }
+  }
+  if (threeDice == 2 && sixDice == 3) {
+    fullHouse.innerHTML = 24;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 48;
+    }
+  }
+
+  if (fourDice == 3 && fiveDice == 2) {
+    fullHouse.innerHTML = 22;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 44;
+    }
+  }
+  if (fourDice == 3 && sixDice == 2) {
+    fullHouse.innerHTML = 24;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 48;
+    }
+  }
+
+  if (fiveDice == 2 && sixDice == 3) {
+    fullHouse.innerHTML = 28;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 56;
+    }
+  }
+
+  if (fiveDice == 3 && sixDice == 2) {
+    fullHouse.innerHTML = 27;
+    if (doubleWorld == 1) {
+      fullHouse.innerHTML = 54;
+    }
   }
 }
