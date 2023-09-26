@@ -1,9 +1,164 @@
-.dice-gone {
-  height: 0;
-  visibility: hidden;
-}
-
 .dice-grid {
   display: inline-block;
   width: auto;
+}
+
+#button-school,
+#button-world,
+#button-worldx {
+  border-radius: 18px;
+  padding: 5px 16px;
+  background-color: rgb(255, 208, 0);
+  border-color: #00eeff;
+  border-width: 3px;
+  width: 58px;
+  color: black;
+  font-size: 12px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#button-worldx {
+  width: 30px;
+}
+
+#button-school:hover
+ {
+  background-color: #81f885;
+  color: white;
+}
+
+.one-container,
+.two-container,
+.three-container,
+.four-container,
+.five-container,
+.one-pair-container,
+.two-pairs-container,
+.triple-container,
+.straight-flush-container,
+.royal-flush-container,
+.full-house-container,
+.quads-container,
+.poker-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  border: solid black;
+  border-bottom: dashed;
+  border-top: none;
+  width: 140px;
+  padding-right: 12px;
+  height: 36px;
+}
+
+.one-pair-container,
+.two-pairs-container,
+.triple-container,
+.straight-flush-container,
+.royal-flush-container,
+.full-house-container,
+.quads-container,
+.poker-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  border: solid black;
+  border-bottom: dashed;
+  border-top: none;
+  width: 220px;
+  padding-right: 12px;
+  height: 36px;
+}
+.one-pair-container {
+  border-top: solid;
+}
+
+.poker-container {
+  border-bottom: solid;
+}
+.one-container {
+  margin-top: 20px;
+  border-top: solid
+}
+
+.six-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  border: solid black;
+  border-top: none;
+  width: 140px;
+  padding-right: 12px;
+  height: 36px;
+}
+
+#one, 
+#two,
+#three,
+#four,
+#five,
+#six,
+.onep,
+.twop,
+.triplep,
+.straight-flushp,
+.royal-flushp,
+.full-housep,
+.quadsp,
+.pokerp {
+  padding-left: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  }
+
+.school-one,
+.school-two,
+.school-three,
+.school-four,
+.school-five,
+.school-six,
+.one-pair,
+.two-pairs,
+.triple,
+.straight-flush,
+.royal-flush,
+.full-house,
+.quads,
+.poker  {
+  align-self: center;
+  width: 30px;
+  border-left: 2px dashed;
+  padding-left: 16px;
+  text-align: center;
+}
+
+.one-pair,
+.two-pairs,
+.triple,
+.straight-flush,
+.royal-flush,
+.full-house,
+.quads,
+.poker  {
+  border: none;
+  padding: 0;
+}
+
+.school,
+.world {
+  display: flex;
+  flex-direction: column;
+}
+
+.school-score-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  border: solid black;
+  border-top: none;
+  width: 128px;
+  padding-right: 12px;
+  height: 36px;
+  padding-left: 12px;
 }

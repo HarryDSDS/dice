@@ -2127,6 +2127,14 @@ btnSchoolConfirmOne.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmOne.style.backgroundColor = "#81f885";
+  btnSchoolConfirmOne.innerHTML = "+";
+  btnSchoolConfirmOne.style.fontSize = "16px";
+  if (oneDieFinalSchool < 0) {
+    btnSchoolConfirmOne.style.backgroundColor = "#ff0000";
+    btnSchoolConfirmOne.innerHTML = "-";
+    btnSchoolConfirmOne.style.fontSize = "16px";
+  }
 });
 btnSchoolConfirmTwo.addEventListener("click", () => {
   const twoDiceFinalSchool = parseInt(schoolTwo.innerHTML);
@@ -2161,6 +2169,9 @@ btnSchoolConfirmTwo.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmTwo.style.backgroundColor = "#81f885";
+  btnSchoolConfirmTwo.innerHTML = "+";
+  btnSchoolConfirmTwo.style.fontSize = "16px";
 });
 btnSchoolConfirmThree.addEventListener("click", () => {
   const threeDiceFinalSchool = parseInt(schoolThree.innerHTML);
@@ -2194,6 +2205,9 @@ btnSchoolConfirmThree.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmThree.style.backgroundColor = "#81f885";
+  btnSchoolConfirmThree.innerHTML = "+";
+  btnSchoolConfirmThree.style.fontSize = "16px";
 });
 btnSchoolConfirmFour.addEventListener("click", () => {
   const fourDiceFinalSchool = parseInt(schoolFour.innerHTML);
@@ -2227,6 +2241,9 @@ btnSchoolConfirmFour.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmFour.style.backgroundColor = "#81f885";
+  btnSchoolConfirmFour.innerHTML = "+";
+  btnSchoolConfirmFour.style.fontSize = "16px";
 });
 btnSchoolConfirmFive.addEventListener("click", () => {
   const fiveDiceFinalSchool = parseInt(schoolFive.innerHTML);
@@ -2260,6 +2277,9 @@ btnSchoolConfirmFive.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmFive.style.backgroundColor = "#81f885";
+  btnSchoolConfirmFive.innerHTML = "+";
+  btnSchoolConfirmFive.style.fontSize = "16px";
 });
 btnSchoolConfirmSix.addEventListener("click", () => {
   const sixDiceFinalSchool = parseInt(schoolSix.innerHTML);
@@ -2293,6 +2313,9 @@ btnSchoolConfirmSix.addEventListener("click", () => {
   schoolResult.innerHTML = schoolScoreFinal(schoolResults);
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnSchoolConfirmSix.style.backgroundColor = "#81f885";
+  btnSchoolConfirmSix.innerHTML = "+";
+  btnSchoolConfirmSix.style.fontSize = "16px";
 });
 
 btnOnePairConfirm.addEventListener("click", () => {
@@ -2326,6 +2349,9 @@ btnOnePairConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnOnePairConfirm.style.backgroundColor = "#81f885";
+  btnOnePairConfirm.innerHTML = "+";
+  btnOnePairConfirm.style.fontSize = "16px";
 });
 btnTwoPairsConfirm.addEventListener("click", () => {
   const twoPairsFinal = parseInt(twoPairs.innerHTML);
@@ -2358,6 +2384,9 @@ btnTwoPairsConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnTwoPairsConfirm.style.backgroundColor = "#81f885";
+  btnTwoPairsConfirm.innerHTML = "+";
+  btnTwoPairsConfirm.style.fontSize = "16px";
 });
 btnTripleConfirm.addEventListener("click", () => {
   const tripleFinal = parseInt(triple.innerHTML);
@@ -2390,6 +2419,9 @@ btnTripleConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnTripleConfirm.style.backgroundColor = "#81f885";
+  btnTripleConfirm.innerHTML = "+";
+  btnTripleConfirm.style.fontSize = "16px";
 });
 btnStraightFlushConfirm.addEventListener("click", () => {
   const straightFinal = parseInt(straightFlush.innerHTML);
@@ -2421,6 +2453,10 @@ btnStraightFlushConfirm.addEventListener("click", () => {
   btnRollAll.disabled = true;
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
+  gameCount++;
+  btnStraightFlushConfirm.style.backgroundColor = "#81f885";
+  btnStraightFlushConfirm.innerHTML = "+";
+  btnStraightFlushConfirm.style.fontSize = "16px";
 });
 btnRoyalFlushConfirm.addEventListener("click", () => {
   const royalFinal = parseInt(royalFlush.innerHTML);
@@ -2453,6 +2489,9 @@ btnRoyalFlushConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnRoyalFlushConfirm.style.backgroundColor = "#81f885";
+  btnRoyalFlushConfirm.innerHTML = "+";
+  btnRoyalFlushConfirm.style.fontSize = "16px";
 });
 btnFullHouseConfirm.addEventListener("click", () => {
   const fullFinal = parseInt(fullHouse.innerHTML);
@@ -2485,6 +2524,9 @@ btnFullHouseConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnFullHouseConfirm.style.backgroundColor = "#81f885";
+  btnFullHouseConfirm.innerHTML = "+";
+  btnFullHouseConfirm.style.fontSize = "16px";
 });
 btnQuadsConfirm.addEventListener("click", () => {
   const quadsFinal = parseInt(quads.innerHTML);
@@ -2517,6 +2559,9 @@ btnQuadsConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnQuadsConfirm.style.backgroundColor = "#81f885";
+  btnQuadsConfirm.innerHTML = "+";
+  btnQuadsConfirm.style.fontSize = "16px";
 });
 btnPokerConfirm.addEventListener("click", () => {
   const pokerFinal = parseInt(poker.innerHTML);
@@ -2549,6 +2594,9 @@ btnPokerConfirm.addEventListener("click", () => {
   btnRollSelected.disabled = true;
   worldResult.innerHTML = schoolScoreFinal(worldResults);
   gameCount++;
+  btnPokerConfirm.style.backgroundColor = "#81f885";
+  btnPokerConfirm.innerHTML = "+";
+  btnPokerConfirm.style.fontSize = "16px";
 });
 
 btnOnePairX.addEventListener("click", () => {

@@ -24,68 +24,98 @@
         <button class="btn-next-round">Next round</button>
       </div>
       <div class="school">
-        <p id="1">1</p>
-        <div class="school-one">---</div>
-        <button class="confirm-one">Pick</button>
-        <p id="2">2</p>
-        <div class="school-two">---</div>
-        <button class="confirm-two">Pick</button>
-        <p id="3">3</p>
-        <div class="school-three">---</div>
-        <button class="confirm-three">Pick</button>
+        <div class="one-container">
+          <p id="one">1</p>
+          <div class="school-one">---</div>
+          <button class="confirm-one" id="button-school">Pick</button>
         </div>
-        <p id="4">4</p>
-        <div class="school-four">---</div>
-        <button class="confirm-four">Pick</button>
+        <div class="two-container">
+          <p id="two">2</p>
+          <div class="school-two">---</div>
+          <button class="confirm-two" id="button-school">Pick</button>
         </div>
-        <p id="5">5</p>
-        <div class="school-five">---</div>
-        <button class="confirm-five">Pick</button>
+        <div class="three-container">
+          <p id="three">3</p>
+          <div class="school-three">---</div>
+          <button class="confirm-three" id="button-school">Pick</button>
         </div>
-        <p id="6">6</p>
-        <div class="school-six">---</div>
-        <button class="confirm-six">Pick</button>
+        <div class="four-container">
+          <p id="four">4</p>
+          <div class="school-four">---</div>
+          <button class="confirm-four" id="button-school">Pick</button>
         </div>
-        <p class="school-score">
-          <strong>School score: </strong><span id="school-result">---</span>
-        </p>
+        <div class="five-container">
+          <p id="five">5</p>
+          <div class="school-five">---</div>
+          <button class="confirm-five" id="button-school">Pick</button>
+        </div>
+        <div class="six-container">
+          <p id="six">6</p>
+          <div class="school-six">---</div>
+          <button class="confirm-six" id="button-school">Pick</button>
+        </div>
+        </div>
+        <div class="school-score-container">
+          <p class="school-score">  
+            <strong>School score: </strong><span id="school-result">---</span>
+          </p>
+        </div>
       </div>
       <div class="world">
-        <p class="onep">1P</p>
-        <div class="one-pair">---</div>
-        <button class="confirm-one-pair">Pick</button>
-        <button class="confirm-one-pair-x">X</button>
+        <div class="one-pair-container">
+          <p class="onep">1P</p>
+          <div class="one-pair">---</div>
+          <button class="confirm-one-pair" id="button-world">Pick</button>
+          <button class="confirm-one-pair-x" id="button-worldx">X</button>
+        </div>
+      <div class="two-pairs-container">
         <p class="twop">2P</p>
         <div class="two-pairs">---</div>
-        <button class="confirm-two-pairs">Pick</button>
-        <button class="confirm-two-pairs-x">X</button>
+        <button class="confirm-two-pairs" id="button-world">Pick</button>
+        <button class="confirm-two-pairs-x" id="button-worldx">X</button>
+      </div>
+      <div class="triple-container">
         <p class="triplep">T</p>
         <div class="triple">---</div>
-        <button class="confirm-triple">Pick</button>
-        <button class="confirm-triple-x">X</button>
+        <button class="confirm-triple" id="button-world">Pick</button>
+        <button class="confirm-triple-x" id="button-worldx">X</button>
+      </div>
+      <div class="straight-flush-container">
         <p class="straight-flushp">SF</p>
         <div class="straight-flush">---</div>
-        <button class="confirm-straight-flush">Pick</button>
-        <button class="confirm-straight-flush-x">X</button>
+        <button class="confirm-straight-flush" id="button-world">Pick</button>
+        <button class="confirm-straight-flush-x" id="button-worldx">X</button>
+      </div>
+      <div class="royal-flush-container">
         <p class="royal-flushp">RF</p>
         <div class="royal-flush">---</div>
-        <button class="confirm-royal-flush">Pick</button>
-        <button class="confirm-royal-flush-x">X</button>
+        <button class="confirm-royal-flush" id="button-world">Pick</button>
+        <button class="confirm-royal-flush-x" id="button-worldx">X</button>
+      </div>
+      <div class="full-house-container">
         <p class="full-housep">FH</p>
         <div class="full-house">---</div>
-        <button class="confirm-full-house">Pick</button>
-        <button class="confirm-full-house-x">X</button>
+        <button class="confirm-full-house" id="button-world">Pick</button>
+        <button class="confirm-full-house-x" id="button-worldx">X</button>
+      </div>
+      <div class="quads-container">
         <p class="quadsp">Q</p>
         <div class="quads">---</div>
-        <button class="confirm-quads">Pick</button>
-        <button class="confirm-quads-x">X</button>
+        <button class="confirm-quads" id="button-world">Pick</button>
+        <button class="confirm-quads-x" id="button-worldx">X</button>
+      </div>
+      <div class="poker-container">
         <p class="pokerp">P</p>
         <div class="poker">---</div>
-        <button class="confirm-poker">Pick</button>
-        <button class="confirm-poker-x">X</button>
+        <button class="confirm-poker" id="button-world">Pick</button>
+        <button class="confirm-poker-x" id="button-worldx">X</button>
+      </div>
+      <div class="full-score-container">
         <p class="full-score">
           <strong>Full score: </strong><span id="full-result"></span>
         </p>
+      </div>
+
       </div>
     </section>
     <script src="app.js" charset="utf-8"></script>
